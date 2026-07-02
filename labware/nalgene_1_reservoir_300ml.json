@@ -1,0 +1,64 @@
+{
+    "ordering": [
+        [
+            "A1"
+        ]
+    ],
+    "brand": {
+        "brand": "Nalgene",
+        "brandId": [
+            "1200-1301"
+        ]
+    },
+    "metadata": {
+        "displayName": "Nalgene 1 Reservoir 300 mL",
+        "displayCategory": "reservoir",
+        "displayVolumeUnits": "mL",
+        "tags": []
+    },
+    "dimensions": {
+        "xDimension": 127.53,
+        "yDimension": 85.53,
+        "zDimension": 39.91
+    },
+    "wells": {
+        "A1": {
+            "depth": 37.45,
+            "totalLiquidVolume": 300,
+            "shape": "rectangular",
+            "xDimension": 121.25,
+            "yDimension": 80.10,
+            "x": 63.77,
+            "y": 42.77,
+            "z": 2
+        }
+    },
+    "groups": [
+        {
+            "metadata": {
+                "wellBottomShape": "flat"
+            },
+            "wells": [
+                "A1"
+            ]
+        }
+    ],
+    "parameters": {
+        "format": "irregular",
+        "quirks": [
+            "centerMultichannelOnWells",
+            "touchTipDisabled"
+        ],
+        "isTiprack": false,
+        "isMagneticModuleCompatible": false,
+        "loadName": "nalgene_1_reservoir_300ml"
+    },
+    "namespace": "custom_beta",
+    "version": 2,
+    "schemaVersion": 2,
+    "cornerOffsetFromSlot": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+    }
+}
