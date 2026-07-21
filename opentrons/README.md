@@ -17,17 +17,26 @@ Opentrons protocols used for bleach synchronization, OP50 agar spotting, and wor
 - Python 3.10+ with `opentrons>=9.0.0` installed (see `requirements.txt`). A single install of this version covers both API levels used in this repo — `opentrons` releases support a backward-compatible range of `apiLevel`s, not a strict one-to-one mapping. If you're running on an OT-2 or Flex robot directly (rather than simulating locally), robot software 9.0.0 or later is required for `apiLevel` 2.28.
 - Opentrons App (for uploading custom labware and running protocols on the robot)
 
-## Custom labware
+## Labware
 
-All three scripts require custom labware definitions, included in `labware/`:
+Every piece of labware loaded across the three protocols is listed below. **Custom** items are included in this repo under `labware/` and must be uploaded to the Opentrons App before running; **standard** items ship with the Opentrons labware library and need no separate upload.
 
-| File | Defines | Required by |
-|---|---|---|
-| `axygen_96_wellplate_1100ul.json` | Axygen 96-well plate, 1100 µL | `bowie_celegans_bleach_sync_var-col_v1.py` (worm plate), `hopsy_p20multi_worm_plating_centrifuge_v4.py` (deep plate) |
-| `nalgene_1_reservoir_300ml.json` | Nalgene 1-well reservoir, 300 mL | `bowie_celegans_bleach_sync_var-col_v1.py` (liquid waste) |
-| `nest_96well_detachable_8well_504201.json` | NEST 96-well ELISA plate, 8-well, detachable (catalog #504201) | `hopsy_p20multi_worm_plating_centrifuge_v4.py`, `hopsy_p20multi_op50_agar_spotting_centrifuge_v4.py` |
+| Labware (`loadName`) | Description | Source | Used by |
+|---|---|---|---|
+| `axygen_96_wellplate_1100ul` | Axygen 96-well plate, 1100 µL | **Custom** — `labware/axygen_96_wellplate_1100ul.json` | Bleach sync (worm plate), worm plating (deep-well source) |
+| `nalgene_1_reservoir_300ml` | Nalgene 1-well reservoir, 300 mL | **Custom** — `labware/nalgene_1_reservoir_300ml.json` | Bleach sync (liquid waste) |
+| `nest_96well_detachable_8well` | NEST 96-well ELISA plate, 8-well, detachable (catalog #504201) | **Custom** — `labware/nest_96well_detachable_8well_504201.json` | OP50 spotting (agar plate), worm plating (agar plate) |
+| `nest_12_reservoir_22ml` | NEST 12-well reservoir, 22 mL | Standard | Bleach sync (water ×2, bleach, M9 troughs) |
+| `nest_12_reservoir_15ml` | NEST 12-well reservoir, 15 mL | Standard | OP50 spotting (OP50 source) |
+| `opentrons_flex_96_filtertiprack_1000ul` | Opentrons Flex 96 filter tip rack, 1000 µL | Standard | Bleach sync (clean + dirty racks) |
+| `opentrons_flex_96_tiprack_adapter` | Opentrons Flex 96 tip-rack adapter | Standard | Bleach sync (×2, one per rack) |
+| `opentrons_96_filtertiprack_20ul` | Opentrons 96 filter tip rack, 20 µL | Standard | OP50 spotting, worm plating |
 
-Before running any script, upload all three JSON files to the Opentrons App under **Labware → Add labware**. They'll appear under the "custom beta" namespace in your labware library. All other labware called out in these scripts (NEST reservoirs, tip racks, tip rack adapters) is part of the standard Opentrons labware library and needs no separate upload.
+The bleach sync protocol also declares the Flex waste chute via `load_waste_chute()` — a built-in deck fixture, not labware, and not used at runtime (tips return to their racks).
+
+### Uploading the custom labware
+
+Upload the three JSON files in `labware/` to the Opentrons App under **Labware → Add labware** before running any script. They'll appear under the "custom beta" namespace in your labware library. Each script needs only a subset — bleach sync uses the Axygen plate and Nalgene reservoir; OP50 spotting uses the NEST detachable plate; worm plating uses the Axygen plate and NEST detachable plate — but uploading all three once covers every protocol.
 
 ## Usage
 
