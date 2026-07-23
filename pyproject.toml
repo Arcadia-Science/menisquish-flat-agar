@@ -1,0 +1,23 @@
+[project]
+name = "menisquish-flat-agar"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "arcadia-microscopy-tools==0.4.1",
+    "numpy>=2.5.1",
+    "scikit-image>=0.26.0",
+    "tqdm>=4.69.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.22",
+    "ty>=0.0.62",
+]
+
+# `opentrons` is intentionally NOT a dependency here: modern opentrons (9.x,
+# per opentrons/README.md) pins numpy<2, which is incompatible with the
+# numpy>=2.5.1 required by the image-processing stack above. Install
+# opentrons in its own environment via `opentrons/requirements.txt` instead.
