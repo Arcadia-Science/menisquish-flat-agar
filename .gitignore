@@ -207,3 +207,6 @@ cython_debug/
 
 # Sample data
 sample-data/*
+
+# Raw microscopy data (large binaries, not tracked in git)
+*.nd2
