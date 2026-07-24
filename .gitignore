@@ -208,5 +208,7 @@ cython_debug/
 # Sample data
 sample-data/*
 
-# Raw microscopy data (large binaries, not tracked in git)
+# Raw microscopy data (large binaries, not tracked in git by default)
 *.nd2
+# Exception: example ND2 files checked in via Git LFS (see image-processing/README.md)
+!image-processing/data/**/*.nd2
