@@ -1383,6 +1383,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "jupyter" },
+    { name = "matplotlib" },
     { name = "ruff" },
     { name = "ty" },
 ]
@@ -1398,6 +1399,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "jupyter", specifier = ">=1.1.1" },
+    { name = "matplotlib", specifier = ">=3.10.0" },
     { name = "ruff", specifier = ">=0.15.22" },
     { name = "ty", specifier = ">=0.0.62" },
 ]

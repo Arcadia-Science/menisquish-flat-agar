@@ -48,6 +48,16 @@ Upload the three JSON files in `labware/` to the Opentrons App under **Labware â
 
 Each script includes in-code comments describing deck layout, timing logic, and volume calculations in detail â€” see the `metadata['description']` field and inline comments in each file for protocol-specific notes.
 
+## Verifying without hardware
+
+If you don't have access to a Flex or OT-2, you can still check that a protocol is well-formed using the [`opentrons_simulate`](https://docs.opentrons.com/v2/new_advanced_running.html#simulate) CLI (installed alongside the `opentrons` package). Point it at the bundled custom labware directory so the simulator can resolve the custom `loadName`s:
+
+```bash
+opentrons_simulate -L labware bowie_celegans_bleach_sync_var-col_v1.py
+```
+
+Run the same command against the other two scripts to simulate the full protocol run without a robot attached.
+
 ## Notes
 
 - `test_mode` in each script shortens delays and/or returns tips to the rack instead of the trash, for dry runs.

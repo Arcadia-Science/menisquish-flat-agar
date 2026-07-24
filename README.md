@@ -12,9 +12,11 @@ cd menisquish-flat-agar
 uv sync
 ```
 
-This installs the image-processing dependencies. The Opentrons protocols are intentionally kept out of this environment because modern `opentrons` pins `numpy<2`, which conflicts with the `numpy>=2` required by the image-processing stack. Install them separately (see [`opentrons/README.md`](opentrons/README.md)):
+This installs the image-processing dependencies. The Opentrons protocols are intentionally kept out of this environment because modern `opentrons` pins `numpy<2`, which conflicts with the `numpy>=2` required by the image-processing stack. Install them in a *separate* virtual environment — do not run this inside the `.venv` created by `uv sync` above (see [`opentrons/README.md`](opentrons/README.md)):
 
 ```bash
+python -m venv .venv-opentrons
+source .venv-opentrons/bin/activate  # on Windows: .venv-opentrons\Scripts\activate
 pip install -r opentrons/requirements.txt
 ```
 
@@ -51,11 +53,11 @@ Run with `--help` to see all options (channel selection, ROI radius, edge-detect
 
 ### Compute Specifications
 
-The image-processing script runs on a standard laptop or workstation and requires no GPU. It was developed and run on macOS with Python 3.12. Memory needs scale with the size of the ND2 z-stacks being loaded; a machine with 16 GB of RAM is comfortable for typical stacks. The Opentrons protocols run on the robots' onboard software (or the Opentrons App simulator) and have no additional compute requirements.
+The image-processing script runs on a standard laptop or workstation and requires no GPU. It was developed and run on macOS (Taho 26.5.1; M3 chip) with Python 3.12. Memory needs scale with the size of the ND2 z-stacks being loaded; a machine with 16 GB of RAM is comfortable for typical stacks. The Opentrons protocols run on the robots' onboard software (or the Opentrons App simulator) and have no additional compute requirements.
 
 ## Data
 
-A few example ND2 z-stacks are checked into [`image-processing/data/`](image-processing/data) using [Git LFS](https://git-lfs.com), organized by acquisition timestamp and mapped to the pub's figure panels; see the [Data section of `image-processing/README.md`](image-processing/README.md#data) for the imaging setup and the file-to-figure-panel table. Install Git LFS once per machine (`git lfs install`) before cloning, or run `git lfs pull` in an existing clone, so the tracked files are fetched instead of left as pointers. Other ND2 files are excluded from version control via `.gitignore` to keep the repository small; `image-processing/data/**/*.nd2` is the sole exception.
+A few example ND2 z-stacks are checked into [`image-processing/data/`](image-processing/data) using [Git LFS](https://git-lfs.com), organized by acquisition timestamp and mapped to the pub's figure panels; see the [Data section of `image-processing/README.md`](image-processing/README.md#data) for the imaging setup and the file-to-figure-panel table. Install Git LFS once per machine (`git lfs install`) before cloning, or run `git lfs pull` in an existing clone, so the tracked files are fetched instead of left as pointers.
 
 ## Contributing
 

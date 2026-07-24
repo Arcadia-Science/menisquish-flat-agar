@@ -1,1 +1,1 @@
-opentrons>=9.0.0
+opentrons==9.0.0
