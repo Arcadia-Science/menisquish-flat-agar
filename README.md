@@ -55,7 +55,7 @@ The image-processing script runs on a standard laptop or workstation and require
 
 ## Data
 
-TODO: Decide on data storage schema...
+A few example ND2 z-stacks are checked into [`image-processing/data/`](image-processing/data) using [Git LFS](https://git-lfs.com), organized by acquisition timestamp and mapped to the pub's figure panels; see the [Data section of `image-processing/README.md`](image-processing/README.md#data) for the imaging setup and the file-to-figure-panel table. Install Git LFS once per machine (`git lfs install`) before cloning, or run `git lfs pull` in an existing clone, so the tracked files are fetched instead of left as pointers. Other ND2 files are excluded from version control via `.gitignore` to keep the repository small; `image-processing/data/**/*.nd2` is the sole exception.
 
 ## Contributing
 
