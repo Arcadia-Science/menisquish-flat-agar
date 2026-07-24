@@ -12,9 +12,11 @@ cd menisquish-flat-agar
 uv sync
 ```
 
-This installs the image-processing dependencies. The Opentrons protocols are intentionally kept out of this environment because modern `opentrons` pins `numpy<2`, which conflicts with the `numpy>=2` required by the image-processing stack. Install them separately (see [`opentrons/README.md`](opentrons/README.md)):
+This installs the image-processing dependencies. The Opentrons protocols are intentionally kept out of this environment because modern `opentrons` pins `numpy<2`, which conflicts with the `numpy>=2` required by the image-processing stack. Install them in a *separate* virtual environment — do not run this inside the `.venv` created by `uv sync` above (see [`opentrons/README.md`](opentrons/README.md)):
 
 ```bash
+python -m venv .venv-opentrons
+source .venv-opentrons/bin/activate  # on Windows: .venv-opentrons\Scripts\activate
 pip install -r opentrons/requirements.txt
 ```
 
