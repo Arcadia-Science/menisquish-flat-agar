@@ -56,7 +56,7 @@ Fluorescence slices are written to a `fluorescence/` subdirectory of the output 
 | `--fluorescence-channel` | `TRITC` | Fluorescence channel to export when `--save-fluorescence` is set. |
 | `--pattern` | `*.nd2` | Glob pattern for input files. |
 | `--no-recursive` | off | Do not search subdirectories. |
-| `--radius-margin` | `250` | Pixels subtracted from the half-min image dimension to set the ROI radius. |
+| `--radius` | `450` | Radius in pixels of the circular well ROI, centered on the image. |
 | `--edge-downsample` | `4` | Downsample factor applied before edge detection for focus scoring. |
 | `--percentile-range LOW HIGH` | `0.1 99.9` | Percentile range for intensity rescaling. |
 | `--format` | `jpg` | Output image format/extension. |
