@@ -125,9 +125,10 @@ def process_file(
 
     cy = intensities.shape[1] // 2
     cx = intensities.shape[2] // 2
-    radius = min(intensities.shape[1:3]) // 2 - args.radius_margin
-    if radius <= 0:
-        return f"skip (radius <= 0): {nd2_path.name}"
+    radius = args.radius
+    max_radius = min(intensities.shape[1:3]) // 2
+    if radius > max_radius:
+        return f"skip (radius {radius} > max {max_radius} for image size): {nd2_path.name}"
 
     focus_index = find_focus_index(intensities, cy, cx, radius, args.edge_downsample)
 
@@ -189,11 +190,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Do not search subdirectories.",
     )
     parser.add_argument(
-        "--radius-margin",
+        "--radius",
         type=int,
-        default=250,
-        help="Pixels subtracted from the half-min image dimension to set the ROI radius "
-        "(default: 250).",
+        default=450,
+        help="Radius in pixels of the circular well ROI, centered on the image "
+        "(default: 450).",
     )
     parser.add_argument(
         "--edge-downsample",
